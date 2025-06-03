@@ -1,0 +1,141 @@
+[gd_scene load_steps=19 format=4 uid="uid://dwkn4ao1g7722"]
+
+[ext_resource type="Script" uid="uid://cjkakdl1q638v" path="res://scripts/player.gd" id="1_uwrxv"]
+[ext_resource type="PackedScene" uid="uid://d7xyc12q05j0" path="res://scenes/paint_emitter.tscn" id="2_p57ef"]
+[ext_resource type="Script" uid="uid://b6rxevty5usj2" path="res://scripts/set_uv_position_mesh.gd" id="3_lnu2h"]
+[ext_resource type="Shader" uid="uid://e2o4ffa13158" path="res://assets/mesh_shader.tres" id="3_p57ef"]
+[ext_resource type="Script" uid="uid://gubkgp4v164k" path="res://scripts/draw_viewport.gd" id="4_iywne"]
+[ext_resource type="Script" uid="uid://detopa88d7r4r" path="res://scripts/brush.gd" id="4_lbhrr"]
+[ext_resource type="Texture2D" uid="uid://crqojmkr2u57i" path="res://assets/level_texture_checkerboard.png" id="4_u5sy4"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_uwrxv"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_yqjtg"]
+sky_material = SubResource("ProceduralSkyMaterial_uwrxv")
+
+[sub_resource type="Environment" id="Environment_lnu2h"]
+background_mode = 2
+sky = SubResource("Sky_yqjtg")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8cj0n"]
+radius = 0.25
+height = 1.0
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_8cj0n"]
+radius = 0.25
+height = 1.0
+
+[sub_resource type="Gradient" id="Gradient_lbhrr"]
+offsets = PackedFloat32Array(0.332168, 0.576923)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_iywne"]
+gradient = SubResource("Gradient_lbhrr")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u5sy4"]
+render_priority = 0
+shader = ExtResource("3_p57ef")
+shader_parameter/MainColor = ExtResource("4_u5sy4")
+shader_parameter/Paint = SubResource("GradientTexture2D_iywne")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_of8y7"]
+_surfaces = [{
+"aabb": AABB(-15, 0, -15, 30, 4, 30),
+"format": 34896613377,
+"index_count": 30,
+"index_data": PackedByteArray("AAABAAIAAQADAAIAAgADAAQAAgAEAAAAAQAFAAMAAAAEAAYABwAFAAEAAAAHAAEABwAGAAUAAAAGAAcA"),
+"name": "m_level",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAAAAP//AAD//wAAAAAAAP//AAD//wAA////////AAAAAP////8AAP////8AAAAAAAD//wAAAAAAAAAAAAAAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_gee14"]
+resource_name = "level2_Plane"
+_surfaces = [{
+"aabb": AABB(-15, 0, -15, 30, 4, 30),
+"attribute_data": PackedByteArray("+QjHP/+Izb/5CM2//4jHPxuyzb8Jocc/G7LHPwmhzb+Tyc2/gbjHP5PJxz+BuM2/C+HNv/rPxz8L4cc/+s/Nv4T4zb9y58c/hPjHP3Lnzb8="),
+"format": 34896613399,
+"index_count": 30,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEA"),
+"material": SubResource("ShaderMaterial_u5sy4"),
+"name": "m_level",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 20,
+"vertex_data": PackedByteArray("AAAAAP//VNX//wAAAABU1f//AAD//1TVAAAAAAAAVNX//wAAAABU1f///////1TV//8AAP//VNX/////AABU1QAAAAD//1TVAAD//wAAVNUAAAAAAABU1QAA/////1TVAAAAAAAA/7//////AAD/v///AAAAAP+/AAD//wAA/7///wAA/////wAA////////AAAAAP///////////////1TVqipU1aoqVNWqKlTVqipUVaqqVFWqqlRVqqpUVaqqqqpUVaqqVFWqqlRVqqpUVf9//3//f/9//3//f/9//3//P/+//z//v/8//7//P/+/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_of8y7")
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_6hlhs"]
+data = PackedVector3Array(-15, 0, 15, 15, 0, -15, 15, 0, 15, -15, 0, 15, -15, 0, -15, 15, 0, -15, 15, 0, -15, 15, 4, 15, 15, 0, 15, 15, 0, -15, 15, 4, -15, 15, 4, 15, -15, 0, 15, -15, 4, -15, -15, 0, -15, -15, 0, 15, -15, 4, 15, -15, 4, -15, -15, 0, -15, 15, 4, -15, 15, 0, -15, -15, 0, -15, -15, 4, -15, 15, 4, -15, 15, 0, 15, -15, 4, 15, -15, 0, 15, 15, 0, 15, 15, 4, 15, -15, 4, 15)
+
+[node name="Game" type="Node3D"]
+
+[node name="Environment" type="Node3D" parent="."]
+
+[node name="DirectionalLight" type="DirectionalLight3D" parent="Environment"]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+light_energy = 0.5
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
+environment = SubResource("Environment_lnu2h")
+
+[node name="Player" type="CharacterBody3D" parent="."]
+script = ExtResource("1_uwrxv")
+
+[node name="CollisionShape" type="CollisionShape3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CapsuleShape3D_8cj0n")
+
+[node name="Mesh" type="MeshInstance3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh = SubResource("CapsuleMesh_8cj0n")
+
+[node name="PaintEmitter" parent="Player" node_paths=PackedStringArray("paint_parent") instance=ExtResource("2_p57ef")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+paint_parent = NodePath("../../Paint")
+
+[node name="Paint" type="Node3D" parent="."]
+
+[node name="CameraPivot" type="Node3D" parent="."]
+
+[node name="AnglePivot" type="Node3D" parent="CameraPivot"]
+
+[node name="PlayerCamera" type="Camera3D" parent="CameraPivot/AnglePivot"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 3.5, 5)
+
+[node name="Level" type="Node3D" parent="."]
+
+[node name="Mesh" type="MeshInstance3D" parent="Level"]
+mesh = SubResource("ArrayMesh_gee14")
+skeleton = NodePath("")
+script = ExtResource("3_lnu2h")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Level/Mesh"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Mesh/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_6hlhs")
+
+[node name="DrawViewport" type="SubViewport" parent="."]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1024, 1024)
+render_target_clear_mode = 1
+render_target_update_mode = 4
+script = ExtResource("4_iywne")
+
+[node name="Brush" type="Node2D" parent="DrawViewport"]
+script = ExtResource("4_lbhrr")
+texture = SubResource("GradientTexture2D_iywne")
+brush_size = 30
