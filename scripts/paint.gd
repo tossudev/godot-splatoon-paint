@@ -11,6 +11,8 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 func set_start_velocity(angle: float):
 	velocity = (global_transform.basis * Vector3.FORWARD).normalized() * speed
 	velocity.y = angle / speed
+	
+	$Mesh.get_active_material(0).albedo_color = color
 
 
 func _physics_process(delta):

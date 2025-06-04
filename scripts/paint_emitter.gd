@@ -9,16 +9,26 @@ extends Node3D
 
 var rng = RandomNumberGenerator.new()
 var angle: float = 0.0
+var color := Color.RED
 
 
 func _process(_delta: float) -> void:
-	emit = Input.is_action_pressed("shoot")
+	emit = false
+	
+	if Input.is_action_pressed("shoot_blue"):
+		color = Color.BLUE
+		emit = true
+	
+	elif Input.is_action_pressed("shoot_red"):
+		color = Color.RED
+		emit = true
 
 
 func _on_timer_timeout():
 	if emit:
 		var p = paint_scene.instantiate() as CharacterBody3D
 		paint_parent.add_child(p)
+		p.color = color
 		p.speed += rng.randf_range(0.0, speed_variance)
 		p.global_position = global_position
 		p.global_rotation = global_rotation

@@ -3,7 +3,7 @@ extends Node2D
 @export var texture: Texture2D
 @export var brush_size: int = 100
 
-#@onready var calc = $'../../ScoreCalculator'
+@onready var calc = $'../../ScoreCalculator'
 
 var brush_queue: Array = []
 
@@ -18,4 +18,4 @@ func _draw():
 		draw_texture_rect(texture, Rect2(b[0].x - brush_size/2, b[0].y - brush_size/2, brush_size, brush_size), false, b[1])
 	brush_queue = []
 	
-	#calc.recalculate_score()
+	calc.recalculate_score()

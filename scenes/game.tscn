@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://dwkn4ao1g7722"]
+[gd_scene load_steps=23 format=4 uid="uid://dwkn4ao1g7722"]
 
 [ext_resource type="Script" uid="uid://cjkakdl1q638v" path="res://scripts/player.gd" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://d7xyc12q05j0" path="res://scenes/paint_emitter.tscn" id="2_p57ef"]
@@ -7,6 +7,8 @@
 [ext_resource type="Script" uid="uid://gubkgp4v164k" path="res://scripts/draw_viewport.gd" id="4_iywne"]
 [ext_resource type="Script" uid="uid://detopa88d7r4r" path="res://scripts/brush.gd" id="4_lbhrr"]
 [ext_resource type="Texture2D" uid="uid://crqojmkr2u57i" path="res://assets/level_texture_checkerboard.png" id="4_u5sy4"]
+[ext_resource type="Script" uid="uid://cagswqd48git0" path="res://scripts/score_calculator.gd" id="8_gee14"]
+[ext_resource type="Script" uid="uid://dtvjficjgm0gi" path="res://scripts/hud.gd" id="9_0tnpc"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_uwrxv"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -79,6 +81,24 @@ shadow_mesh = SubResource("ArrayMesh_of8y7")
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_6hlhs"]
 data = PackedVector3Array(-15, 0, 15, 15, 0, -15, 15, 0, 15, -15, 0, 15, -15, 0, -15, 15, 0, -15, 15, 0, -15, 15, 4, 15, 15, 0, 15, 15, 0, -15, 15, 4, -15, 15, 4, 15, -15, 0, 15, -15, 4, -15, -15, 0, -15, -15, 0, 15, -15, 4, 15, -15, 4, -15, -15, 0, -15, 15, 4, -15, 15, 0, -15, -15, 0, -15, -15, 4, -15, 15, 4, -15, 15, 0, 15, -15, 4, 15, -15, 0, 15, 15, 0, 15, 15, 4, 15, -15, 4, 15)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0tnpc"]
+bg_color = Color(1, 0, 0, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vtaks"]
+bg_color = Color(0, 0, 1, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+
 [node name="Game" type="Node3D"]
 
 [node name="Environment" type="Node3D" parent="."]
@@ -139,3 +159,40 @@ script = ExtResource("4_iywne")
 script = ExtResource("4_lbhrr")
 texture = SubResource("GradientTexture2D_iywne")
 brush_size = 30
+
+[node name="ScoreCalculator" type="Node" parent="."]
+script = ExtResource("8_gee14")
+
+[node name="HUD" type="CanvasLayer" parent="."]
+script = ExtResource("9_0tnpc")
+
+[node name="ScoreTotal" type="Label" parent="HUD"]
+offset_top = 64.0
+offset_right = 1152.0
+offset_bottom = 128.0
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 16
+text = "Total Area Painted: 0.0%"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Instructions" type="Label" parent="HUD"]
+offset_left = 8.0
+offset_top = 536.0
+offset_right = 158.0
+offset_bottom = 637.0
+theme_override_constants/outline_size = 8
+text = "WASD to move
+Mouse turns player
+Left click to shoot
+Space to jump"
+
+[node name="ScoreBar" type="ProgressBar" parent="HUD"]
+offset_left = 384.0
+offset_top = 16.0
+offset_right = 776.0
+offset_bottom = 72.0
+theme_override_styles/background = SubResource("StyleBoxFlat_0tnpc")
+theme_override_styles/fill = SubResource("StyleBoxFlat_vtaks")
+value = 50.0
+show_percentage = false
