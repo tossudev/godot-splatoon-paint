@@ -29,7 +29,7 @@ func _input(event):
 			)
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	_apply_vertical()
 	_apply_horizontal()
 	

@@ -178,19 +178,21 @@ vertical_alignment = 1
 
 [node name="Instructions" type="Label" parent="HUD"]
 offset_left = 8.0
-offset_top = 536.0
-offset_right = 158.0
-offset_bottom = 637.0
+offset_top = 456.0
+offset_right = 237.0
+offset_bottom = 624.0
 theme_override_constants/outline_size = 8
 text = "WASD to move
 Mouse turns player
-Left click to shoot
+Left click to shoot red paint
+Right click to shoot blue paint
 Space to jump"
+vertical_alignment = 2
 
 [node name="ScoreBar" type="ProgressBar" parent="HUD"]
 offset_left = 384.0
 offset_top = 16.0
-offset_right = 776.0
+offset_right = 768.0
 offset_bottom = 72.0
 theme_override_styles/background = SubResource("StyleBoxFlat_0tnpc")
 theme_override_styles/fill = SubResource("StyleBoxFlat_vtaks")
