@@ -131,6 +131,7 @@ paint_parent = NodePath("../../Paint")
 [node name="CameraPivot" type="Node3D" parent="."]
 
 [node name="AnglePivot" type="Node3D" parent="CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="PlayerCamera" type="Camera3D" parent="CameraPivot/AnglePivot"]
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 3.5, 5)
@@ -170,7 +171,7 @@ script = ExtResource("9_0tnpc")
 offset_top = 64.0
 offset_right = 1152.0
 offset_bottom = 128.0
-theme_override_constants/outline_size = 16
+theme_override_constants/outline_size = 12
 theme_override_font_sizes/font_size = 16
 text = "Total Area Painted: 0.0%"
 horizontal_alignment = 1

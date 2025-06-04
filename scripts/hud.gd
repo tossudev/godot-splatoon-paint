@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+const LERP_WEIGHT: float = 0.1
+
 @onready var score_calculator: Node = get_parent().get_node("ScoreCalculator")
 
 var score: int
@@ -12,11 +14,11 @@ var percentage_painted: float
 
 
 func _process(_delta: float) -> void:
-	score = score_calculator.score
+	score = lerp(score, score_calculator.score, LERP_WEIGHT)
 	total = score_calculator.total_pixels
 	
 	red_score = score_calculator.red_pixels
-	blue_score = lerp(blue_score, score_calculator.blue_pixels, 0.1)
+	blue_score = lerp(blue_score, score_calculator.blue_pixels, LERP_WEIGHT)
 	
 	if total == 0:
 		return

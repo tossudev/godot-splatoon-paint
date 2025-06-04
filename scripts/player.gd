@@ -6,7 +6,7 @@ const SPEED: float = 4.0
 const JUMP_FORCE: float = 8.0
 const GRAVITY_FORCE: float = 0.35
 
-const MAX_LOOK_ANGLE: float = 30.0
+const MAX_LOOK_ANGLE: float = 40.0
 
 @onready var camera_pivot: Node3D = get_parent().get_node("CameraPivot")
 @onready var camera_angle_pivot: Node3D = get_parent().get_node("CameraPivot/AnglePivot")
